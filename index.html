@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>송유민 포트폴리오 | Yumin Song</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;700&family=Cormorant+Garamond:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-primary: #F472B6;
+            --bg-main: #FFFFFF;
+            --text-main: #18181b;
+            --text-muted: #52525b;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --glass-blur: 24px;
+            --theme-glow: rgba(0, 0, 0, 0.03);
+            --border-radius: 12px;
+            --gradient-1: #f4f4f5;
+            --gradient-2: #e4e4e7;
+        }
+
+        /* Sakura (Muted Pink & Clear Rose Text) */
+        [data-theme="sakura"] {
+            --accent-primary: #EC4899;
+            --bg-main: #FFF1F2;
+            --text-main: #831843; /* 짙은 와인색으로 가독성 확보 */
+            --text-muted: #9D174D;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(244, 114, 182, 0.3);
+            --theme-glow: rgba(251, 207, 232, 0.6);
+            --border-radius: 40px;
+            --gradient-1: #FFE4E6;
+            --gradient-2: #FFD1DC;
+        }
+
+        /* Modern (Pure White - High Contrast) */
+        [data-theme="modern"] {
+            --bg-main: #FFFFFF;
+            --text-main: #000000;
+            --text-muted: #3f3f46;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --border-radius: 4px;
+            --theme-glow: rgba(0, 0, 0, 0.04);
+            --accent-primary: #18181b;
+            --gradient-1: #fdfdfd;
+            --gradient-2: #f0f0f0;
+        }
+
+        /* Midnight (Deep Slate & Bright Text) */
+        [data-theme="midnight"] {
+            --bg-main: #020617;
+            --text-main: #F8FAFC;
+            --text-muted: #CBD5E1;
+            --card-bg: rgba(15, 23, 42, 0.8);
+            --card-border: rgba(51, 65, 85, 0.4);
+            --border-radius: 16px;
+            --theme-glow: rgba(56, 189, 248, 0.2);
+            --accent-primary: #38BDF8;
+            --gradient-1: #1E293B;
+            --gradient-2: #020617;
+        }
+
+        /* Forest (Dark Emerald & Mint Text) */
+        [data-theme="forest"] {
+            --bg-main: #064E3B;
+            --text-main: #F0FDF4;
+            --text-muted: #BBF7D0;
+            --card-bg: rgba(6, 78, 59, 0.7);
+            --card-border: rgba(16, 185, 129, 0.3);
+            --border-radius: 24px;
+            --theme-glow: rgba(34, 197, 94, 0.2);
+            --accent-primary: #4ADE80;
+            --gradient-1: #065F46;
+            --gradient-2: #064E3B;
+        }
+
+        /* Sunset (Rich Terracotta & Ivory Text) */
+        [data-theme="sunset"] {
+            --bg-main: #7C2D12;
+            --text-main: #FFF7ED;
+            --text-muted: #FFEDD5;
+            --card-bg: rgba(124, 45, 18, 0.7);
+            --card-border: rgba(251, 146, 60, 0.3);
+            --border-radius: 32px;
+            --theme-glow: rgba(251, 146, 60, 0.25);
+            --accent-primary: #FB923C;
+            --gradient-1: #9A3412;
+            --gradient-2: #7C2D12;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            margin: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .outfit { font-family: 'Outfit', sans-serif; }
+        .serif-quote { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+        
+        .ethereal-bg {
+            background: radial-gradient(circle at 10% 10%, var(--gradient-1) 0%, transparent 45%),
+                        radial-gradient(circle at 90% 90%, var(--gradient-2) 0%, transparent 45%),
+                        var(--bg-main);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            transition: all 1s ease;
+        }
+        
+        .floating-orb {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--theme-glow) 0%, transparent 60%);
+            filter: blur(140px);
+            z-index: -1;
+            animation: float-around 30s infinite alternate ease-in-out;
+            transition: all 1s ease;
+            opacity: 0.5;
+        }
+
+        @keyframes float-around {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            100% { transform: translate(15%, 15%) scale(1.1); }
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius);
+            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cute-button {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            border-radius: calc(var(--border-radius) / 1.5);
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+        }
+
+        .cute-button:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 25px var(--theme-glow);
+        }
+
+        /* 텍스트 클래스 매핑 강화 */
+        .text-pink-400, .text-pink-300, .text-blue-400, .text-blue-300 { 
+            color: var(--accent-primary) !important; 
+            filter: brightness(1.1);
+        }
+        
+        .text-gray-900, .text-gray-800, .text-gray-700 { 
+            color: var(--text-main) !important; 
+        }
+        
+        .text-gray-600, .text-gray-500, .text-gray-400, .text-gray-300 { 
+            color: var(--text-muted) !important;
+            opacity: 0.95 !important; /* 얇은 글씨 가독성 향상 */
+        }
+        
+        .bg-white, .bg-gray-50, .bg-[#F8F9FF] { 
+            background-color: var(--bg-main) !important; 
+        }
+        
+        .bg-pink-100, .bg-blue-100 {
+            background-color: var(--accent-primary) !important;
+            opacity: 0.2 !important;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 10px; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.91.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div class="ethereal-bg"></div>
+    <div class="floating-orb" style="top: -15%; left: -15%;"></div>
+    <div class="floating-orb" style="bottom: -15%; right: -15%; animation-delay: -10s;"></div>
+    <div id="root"></div>
+</body>
+</html>
