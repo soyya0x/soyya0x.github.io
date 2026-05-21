@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Login from "./pages/Login.jsx";
+import Home from "./pages/Home.jsx";
 
-import { addExp } from "./utils/levelSystem";
+import { addExp } from "./utils/levelSystem.js";
 
 export default function App() {
   const [user, setUser] =
